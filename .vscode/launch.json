@@ -1,0 +1,27 @@
+{
+    "version": "0.0.1",
+    "configurations": [
+      {
+        "name": "DEV",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_dev.dart",
+        "args": ["--flavor", "dev"]
+      },
+      {
+        "name": "PROD",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_prod.dart",
+        "args": ["--flavor", "prod"]
+      },
+      {
+        "name": "QA",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_qa.dart",
+        "args": ["--flavor", "qa"]
+      },
+    ]
+  }
+  
