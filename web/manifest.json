@@ -1,6 +1,6 @@
 {
-    "name": "app_restaurant",
-    "short_name": "app_restaurant",
+    "name": "challenge_disruptive",
+    "short_name": "challenge_disruptive",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,4 +1,4 @@
-import 'package:app_restaurant/widgets/buttons/buttons_login/buttons_login_state.dart';
+import 'package:challenge_disruptive/widgets/buttons/buttons_login/buttons_login_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ButtonsLoginController extends StateNotifier<ButtonsLoginState> {

@@ -1,12 +1,11 @@
-import 'package:app_restaurant/features/login/presentation/login/login_controller.dart';
-import 'package:app_restaurant/features/login/presentation/login/widgets/background_login.dart';
-import 'package:app_restaurant/features/login/presentation/login/widgets/card_login.dart';
-import 'package:app_restaurant/features/login/presentation/login/widgets/card_register.dart';
-import 'package:app_restaurant/tools/custom_colors.dart';
-import 'package:app_restaurant/tools/custom_text.dart';
-import 'package:app_restaurant/tools/dimens_extension.dart';
-import 'package:app_restaurant/tools/styles.dart';
-import 'package:app_restaurant/widgets/buttons/buttons_login/buttons_login.dart';
+import 'package:challenge_disruptive/features/login/presentation/login/login_controller.dart';
+import 'package:challenge_disruptive/features/login/presentation/login/login_state.dart';
+import 'package:challenge_disruptive/features/login/presentation/login/widgets/background_login.dart';
+import 'package:challenge_disruptive/features/login/presentation/login/widgets/card_login.dart';
+import 'package:challenge_disruptive/features/login/presentation/login/widgets/card_register.dart';
+import 'package:challenge_disruptive/tools/custom_text.dart';
+import 'package:challenge_disruptive/tools/extensions/dimens_extension.dart';
+import 'package:challenge_disruptive/widgets/buttons/buttons_login/buttons_login.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter/material.dart';
@@ -23,7 +22,6 @@ class _LoginState extends ConsumerState<LoginPage> {
   GlobalKey<FormState> formkey =
       GlobalKey<FormState>(debugLabel: '_loginFormKey');
 
-  
   @override
   Widget build(BuildContext context) {
     var controller = ref.watch(loginController.notifier);
@@ -38,24 +36,11 @@ class _LoginState extends ConsumerState<LoginPage> {
             child: Column(
               children: [
                 const CustomText(
-                  'Iniciar Sesión',
+                  'Bienvenido',
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
                 ),
                 const SizedBox(height: 15),
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    style: styles.textStyle(),
-                    children: [
-                      const TextSpan(
-                          text: "Al iniciar sesión estás aceptando nuestros "),
-                      TextSpan(
-                          text: "términos y política de privacidad.",
-                          style: styles.textStyle(textColor: colors.blueNormal))
-                    ],
-                  ),
-                ),
                 const SizedBox(height: 50),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -74,7 +59,10 @@ class _LoginState extends ConsumerState<LoginPage> {
                   ],
                 ),
                 const SizedBox(height: 50),
-                getScreen(state.idScreen!)
+                getScreen(
+                    idScreen: state.idScreen!,
+                    controller: controller,
+                    state: state)
               ],
             ),
           )
@@ -83,10 +71,15 @@ class _LoginState extends ConsumerState<LoginPage> {
     );
   }
 
-  Widget getScreen(int idScreen) {
+  Widget getScreen(
+      {required int idScreen,
+      required LoginController controller,
+      required LoginState state}) {
     switch (idScreen) {
       case 1:
         return CardLogin(
+          pageController: controller,
+          pageState: state,
           formkey: formkey,
           tecEmail: tecEmail,
           tecPassword: tecPassword,

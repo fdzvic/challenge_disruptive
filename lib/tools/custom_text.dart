@@ -53,7 +53,7 @@ textStyle({
         fontFamily: 'Roboto',
         fontWeight: fontWeight ?? FontWeight.w400,
         fontSize: fontSize,
-        color: textColor ?? Colors.black,
+        color: textColor ?? Colors.white,
         decoration: textDecoration ?? TextDecoration.none,
-        decorationColor: textColor ?? Colors.black,
+        decorationColor: textColor ?? Colors.white,
         height: height);

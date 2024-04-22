@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'package:app_restaurant/common/network/models/http_services_response.dart';
-import 'package:app_restaurant/common/user_preferences.dart';
-import 'package:app_restaurant/tools/constants.dart';
+import 'package:challenge_disruptive/common/network/models/http_services_response.dart';
+import 'package:challenge_disruptive/common/user_preferences.dart';
+import 'package:challenge_disruptive/tools/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 

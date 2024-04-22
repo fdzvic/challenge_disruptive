@@ -1,6 +1,6 @@
-import 'package:app_restaurant/tools/custom_colors.dart';
-import 'package:app_restaurant/tools/custom_text.dart';
-import 'package:app_restaurant/widgets/buttons/buttons_login/buttons_login_controller.dart';
+import 'package:challenge_disruptive/tools/custom_colors.dart';
+import 'package:challenge_disruptive/tools/custom_text.dart';
+import 'package:challenge_disruptive/widgets/buttons/buttons_login/buttons_login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -40,12 +40,12 @@ class _ButtonsLoginState extends ConsumerState<ButtonsLogin> {
                   border: BorderDirectional(
                       bottom: BorderSide(
                           color: widget.id == state.id
-                              ? Colors.black
+                              ? colors.blueDark
                               : Colors.transparent))),
               child: CustomText(widget.label,
                   fontSize: 20,
                   textColor:
-                      widget.id == state.id ? colors.blueDark : Colors.black)),
+                      widget.id == state.id ? colors.blueDark : Colors.white)),
         ),
       ],
     );

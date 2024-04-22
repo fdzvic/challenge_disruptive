@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:app_restaurant/tools/custom_text.dart';
-import 'package:app_restaurant/tools/routes.dart';
+import 'package:challenge_disruptive/features/login/data/login_repository.dart';
+import 'package:challenge_disruptive/tools/custom_text.dart';
+import 'package:challenge_disruptive/tools/routes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -24,8 +25,21 @@ class _SplashScreenState extends ConsumerState<SplashScreenPage>
       vsync: this,
       duration: const Duration(milliseconds: 500),
     )..repeat(reverse: true);
+  }
 
-    Timer(const Duration(seconds: 5), () => context.go(Routes.login));
+  @override
+  void didChangeDependencies() {
+    Timer(const Duration(seconds: 5), () {
+      ref.watch(loginRepositoryProvider).authStateChange.listen((user) {
+        if (user == null) {
+          context.go(Routes.login);
+        } else {
+          context.go(Routes.home);
+        }
+      });
+    });
+
+    super.didChangeDependencies();
   }
 
   @override
@@ -38,6 +52,7 @@ class _SplashScreenState extends ConsumerState<SplashScreenPage>
   Widget build(BuildContext context) {
     // var controller = ref.watch(splashScreenController.notifier);
     // var state = ref.watch(splashScreenController);
+
     return Scaffold(
       body: SafeArea(
           child: Center(

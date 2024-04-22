@@ -1,4 +1,7 @@
-import 'package:app_restaurant/tools/custom_colors.dart';
+import 'package:challenge_disruptive/tools/custom_colors.dart';
+import 'package:challenge_disruptive/tools/custom_text.dart';
+import 'package:challenge_disruptive/tools/extensions/dimens_extension.dart';
+import 'package:challenge_disruptive/tools/paths/paths_gifs.dart';
 import 'package:flutter/material.dart';
 
 enum ButtonType { primary, secondary }
@@ -9,9 +12,9 @@ class PrimaryButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? textColor;
   final Color? borderColor;
-  final ButtonType buttonType;
+  final ButtonType? buttonType;
   final Widget? icon;
-  final bool enabled;
+  final bool? enabled;
   final double? height;
   final double? width;
   final bool? isLoading;
@@ -25,12 +28,12 @@ class PrimaryButton extends StatelessWidget {
     this.backgroundColor,
     this.textColor,
     this.borderColor,
-    required this.buttonType,
+    this.buttonType = ButtonType.primary,
     this.icon,
-    required this.enabled,
+    this.enabled = true,
     this.height,
     this.width,
-    this.isLoading,
+    this.isLoading = false,
     this.fontSizeText,
     this.buttonPadding,
   });
@@ -38,11 +41,41 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: enabled && isLoading == false ? () => onPressed() : null,
+      onTap: enabled! && isLoading == false ? () => onPressed() : null,
       child: Container(
-        height: height ?? 20,
-        width: width ?? 100,
-        decoration: BoxDecoration(),
+        height: height ?? 45,
+        padding: buttonPadding,
+        alignment: Alignment.center,
+        width: width ?? context.width(.9),
+        decoration: BoxDecoration(
+          color: backgroundColor ?? _getBackgroundColor(buttonType!),
+          border: Border.fromBorderSide(
+            BorderSide(color: borderColor ?? _getBorderColor(buttonType!)),
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          mainAxisAlignment: icon != null
+              ? MainAxisAlignment.spaceEvenly
+              : MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (isLoading!) ...[
+              SizedBox(
+                height: 40,
+                width: 40,
+                child: Image.asset(gifs.loading),
+              )
+            ] else ...[
+              CustomText(
+                text,
+                textColor: textColor ?? _getTextColor(buttonType!),
+                fontWeight: FontWeight.w500,
+                fontSize: fontSizeText ?? 20,
+              ),
+            ]
+          ],
+        ),
       ),
     );
   }
@@ -51,19 +84,19 @@ class PrimaryButton extends StatelessWidget {
     switch (buttonType) {
       case ButtonType.primary:
         return textColor ??
-            (enabled
+            (enabled!
                 ? colors.primaryButtonColor
                 : colors.primaryButtonDisabledColor);
 
       case ButtonType.secondary:
-        return backgroundColor ??  
-            (enabled
+        return backgroundColor ??
+            (enabled!
                 ? colors.secundaryButtonColor
                 : colors.secundaryButtonDisabledColor);
 
       default:
         return backgroundColor ??
-            (enabled
+            (enabled!
                 ? colors.primaryButtonColor
                 : colors.primaryButtonDisabledColor);
     }
@@ -73,17 +106,17 @@ class PrimaryButton extends StatelessWidget {
     switch (buttonType) {
       case ButtonType.primary:
         return borderColor ??
-            (enabled
+            (enabled!
                 ? colors.primaryButtonColor
                 : colors.primaryButtonDisabledColor);
 
       case ButtonType.secondary:
         return borderColor ??
-            (enabled ? colors.textColor : colors.primaryButtonDisabledColor);
+            (enabled! ? colors.textColor : colors.primaryButtonDisabledColor);
 
       default:
         return backgroundColor ??
-            (enabled
+            (enabled!
                 ? colors.primaryButtonColor
                 : colors.primaryButtonDisabledColor);
     }
@@ -99,7 +132,7 @@ class PrimaryButton extends StatelessWidget {
 
       default:
         return backgroundColor ??
-            (enabled
+            (enabled!
                 ? colors.primaryButtonColor
                 : colors.primaryButtonDisabledColor);
     }

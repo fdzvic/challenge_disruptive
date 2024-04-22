@@ -1,4 +1,4 @@
-import 'package:app_restaurant/tools/dimens_extension.dart';
+import 'package:challenge_disruptive/tools/extensions/dimens_extension.dart';
 import 'package:flutter/material.dart';
 
 class CardRegister extends StatelessWidget {

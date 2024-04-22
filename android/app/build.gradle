@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.app_restaurant"
+    namespace "com.example.challenge_disruptive"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -41,7 +41,7 @@ android {
     }
 
     defaultConfig {
-         applicationId "com.example.app_restaurant"
+         applicationId "com.example.challenge_disruptive"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
@@ -68,8 +68,6 @@ android {
         qa {
             dimension "default"  
         }
-     
-
     }
 }
 

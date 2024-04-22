@@ -1,6 +1,6 @@
-import 'package:app_restaurant/features/dashboard/presentation/home/home_page.dart';
-import 'package:app_restaurant/features/init/presentation/splash_screen/splash_screen_page.dart';
-import 'package:app_restaurant/features/login/presentation/login/login_page.dart';
+import 'package:challenge_disruptive/features/dashboard/presentation/home/home_page.dart';
+import 'package:challenge_disruptive/features/init/presentation/splash_screen/splash_screen_page.dart';
+import 'package:challenge_disruptive/features/login/presentation/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

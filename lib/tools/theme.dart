@@ -1,4 +1,4 @@
-import 'package:app_restaurant/tools/custom_colors.dart';
+import 'package:challenge_disruptive/tools/custom_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTheme {

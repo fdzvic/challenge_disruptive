@@ -1,7 +1,7 @@
-import 'package:app_restaurant/tools/custom_colors.dart';
-import 'package:app_restaurant/tools/custom_text.dart';
-import 'package:app_restaurant/tools/paths_icons.dart';
-import 'package:app_restaurant/tools/validators.dart';
+import 'package:challenge_disruptive/tools/custom_colors.dart';
+import 'package:challenge_disruptive/tools/custom_text.dart';
+import 'package:challenge_disruptive/tools/paths/paths_icons.dart';
+import 'package:challenge_disruptive/tools/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -115,7 +115,7 @@ class CustomTextFormFieldState extends State<CustomTextFormField> {
                 widget.label,
                 fontWeight: widget.fontWeight ?? FontWeight.w400,
                 fontSize: widget.labelFontSize ?? 16,
-                textColor: Colors.black,
+                textColor: Colors.white,
               ),
             ],
           ),
@@ -139,7 +139,7 @@ class CustomTextFormFieldState extends State<CustomTextFormField> {
             textInputAction: TextInputAction.none,
             style: const TextStyle(
               fontFamily: "Roboto",
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 16,
             ),
             textAlignVertical: TextAlignVertical.center,
@@ -169,7 +169,7 @@ class CustomTextFormFieldState extends State<CustomTextFormField> {
                           child: SvgPicture.asset(
                             widget.prefixIconPath!,
                             colorFilter: ColorFilter.mode(
-                                focusNode.hasFocus ? Colors.black : Colors.grey,
+                                focusNode.hasFocus ? Colors.white : Colors.grey,
                                 BlendMode.srcIn),
                             fit: BoxFit.contain,
                           ),
@@ -209,7 +209,7 @@ class CustomTextFormFieldState extends State<CustomTextFormField> {
             obscuringCharacter: "*",
             cursorHeight: 24,
             cursorWidth: 1,
-            cursorColor: Colors.black,
+            cursorColor: Colors.white,
           ),
         ),
         Container(
@@ -263,7 +263,7 @@ class CustomTextFormFieldState extends State<CustomTextFormField> {
     if (showError! || widget.errorBack!) {
       return colors.errorColor;
     }
-    return focusNode.hasFocus ? Colors.black : Colors.grey;
+    return focusNode.hasFocus ? Colors.white : Colors.grey;
   }
 
   _defineObscureTextValue() {
@@ -326,6 +326,8 @@ class CustomTextFormFieldState extends State<CustomTextFormField> {
               children: [
                 SvgPicture.asset(
                   obscureText ? icons.closedEyePassword : icons.openEyePassword,
+                  colorFilter:
+                      const ColorFilter.mode(Colors.white, BlendMode.srcIn),
                 ),
               ],
             ),
