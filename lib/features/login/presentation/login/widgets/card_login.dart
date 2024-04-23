@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:challenge_disruptive/common/user_preferences.dart';
 import 'package:challenge_disruptive/features/login/presentation/login/login_controller.dart';
 import 'package:challenge_disruptive/features/login/presentation/login/login_state.dart';
 import 'package:challenge_disruptive/tools/custom_dialogs.dart';
@@ -40,11 +41,17 @@ class CardLogin extends StatelessWidget {
               label: "Email",
               controller: tecEmail,
               inputValueType: InputValueType.email,
+              onChanged: (x) => pageState.firstValidation!
+                  ? formkey.currentState!.validate()
+                  : null,
             ),
             CustomTextFormField(
               label: "Password",
               controller: tecPassword,
               inputValueType: InputValueType.password,
+              onChanged: (x) => pageState.firstValidation!
+                  ? formkey.currentState!.validate()
+                  : null,
             ),
             const SizedBox(height: 10),
             PrimaryButton(
@@ -69,6 +76,7 @@ class CardLogin extends StatelessWidget {
           if (element.user == tecEmail.text &&
               element.password == tecPassword.text) {
             goToHome = true;
+            prefs.loggedIn = true;
             pageController.setIsLoading(false);
             pageController.setFirtsValidation(false);
             context.go(Routes.home);

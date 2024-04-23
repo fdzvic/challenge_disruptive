@@ -26,7 +26,7 @@ class LoginController extends StateNotifier<LoginState> {
   }
 
   void getIdScreen(int idScreen) {
-    state = state.copyWith(idScreen: idScreen);
+    state = state.copyWith(idScreen: idScreen, firstValidation: false);
   }
 
   void setIsLoading(bool value) {
@@ -35,6 +35,10 @@ class LoginController extends StateNotifier<LoginState> {
 
   void setFirtsValidation(bool value) {
     state = state.copyWith(firstValidation: value);
+  }
+
+  void setMatchValuePassword(String password) {
+    state = state.copyWith(matchValuePassword: password);
   }
 }
 

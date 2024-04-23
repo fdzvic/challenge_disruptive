@@ -41,17 +41,28 @@ class CardRegister extends StatelessWidget {
               label: "Correo electrónico",
               controller: tecEmail,
               inputValueType: InputValueType.email,
+              onChanged: (x) => pageState.firstValidation!
+                  ? formkey.currentState!.validate()
+                  : null,
             ),
             CustomTextFormField(
-              label: "Contraseña",
-              controller: tecPassword,
-              inputValueType: InputValueType.password,
-            ),
+                label: "Contraseña",
+                controller: tecPassword,
+                inputValueType: InputValueType.password,
+                onChanged: (x) {
+                  pageController.setMatchValuePassword(x);
+                  if (pageState.firstValidation!) {
+                    formkey.currentState!.validate();
+                  }
+                }),
             CustomTextFormField(
               label: "Confirmar contraseña",
               controller: tecConfirmPassword,
-              matchValue: tecPassword.text,
+              matchValue: pageState.matchValuePassword,
               inputValueType: InputValueType.changePasword,
+              onChanged: (x) => pageState.firstValidation!
+                  ? formkey.currentState!.validate()
+                  : null,
             ),
             const SizedBox(height: 10),
             PrimaryButton(
@@ -67,6 +78,7 @@ class CardRegister extends StatelessWidget {
 
   void verifyNewUser(BuildContext context) {
     bool validUser = true;
+    pageController.setFirtsValidation(true);
     for (var element in pageState.users!) {
       if (element.user == tecEmail.text) {
         validUser = false;
@@ -75,6 +87,7 @@ class CardRegister extends StatelessWidget {
                 title: "Error",
                 subtitle: "Ya existe un usuario con este correo",
                 onPressed: () {
+                  pageController.setFirtsValidation(false);
                   Navigator.pop(context);
                 }));
       }
@@ -98,6 +111,7 @@ class CardRegister extends StatelessWidget {
                 pageController.getIdScreen(1);
                 buttonsController.toggleSelection(1);
                 clearTec();
+                pageController.setFirtsValidation(false);
                 Navigator.pop(context);
               }));
     }

@@ -1,3 +1,4 @@
+import 'package:challenge_disruptive/common/user_preferences.dart';
 import 'package:challenge_disruptive/tools/routes.dart';
 import 'package:challenge_disruptive/widgets/buttons/primary_button/primary_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,7 +22,7 @@ class HomePage extends ConsumerWidget {
             child: PrimaryButton(
               text: 'Salir',
               onPressed: () {
-                // controller.loginRepository.signOut();
+                prefs.loggedIn = false;
                 context.go(Routes.login);
               },
             ),
