@@ -4,15 +4,22 @@ extension StringConverter on String {
       dynamic x = this;
       x ??= 0;
 
-      if (x.runtimeType == String) {
-        x = num.parse(x ?? '0').round();
+      String formattedValue;
+
+      if (x.runtimeType == double) {
+        formattedValue = x.toStringAsFixed(2); // Redondear a dos decimales
+      } else {
+        formattedValue = x.toString();
       }
-      List<String> parts = x.toString().split(',');
+
+      List<String> parts = formattedValue.split('.');
       RegExp re = RegExp(r'\B(?=(\d{3})+(?!\d))');
 
-      parts.first = parts.first.replaceAll(re, ',');
+      parts[0] = parts[0].replaceAll(re, ',');
 
-      return "L ${parts.first}";
+      String result = parts.join('.');
+
+      return "\$ $result";
     } catch (e) {
       return this;
     }

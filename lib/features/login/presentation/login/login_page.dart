@@ -46,7 +46,7 @@ class _LoginState extends ConsumerState<LoginPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: context.horizontal(.05),
+            padding: context.symetric(.05, .1),
             child: Column(
               children: [
                 const CustomText(

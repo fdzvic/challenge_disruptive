@@ -39,6 +39,7 @@ class CardRegister extends StatelessWidget {
           children: [
             CustomTextFormField(
               label: "Correo electrónico",
+              hintText: "prueba@gmail.com",
               controller: tecEmail,
               inputValueType: InputValueType.email,
               onChanged: (x) => pageState.firstValidation!
@@ -47,6 +48,7 @@ class CardRegister extends StatelessWidget {
             ),
             CustomTextFormField(
                 label: "Contraseña",
+                hintText: "**************",
                 controller: tecPassword,
                 inputValueType: InputValueType.password,
                 onChanged: (x) {
@@ -57,6 +59,7 @@ class CardRegister extends StatelessWidget {
                 }),
             CustomTextFormField(
               label: "Confirmar contraseña",
+              hintText: "**************",
               controller: tecConfirmPassword,
               matchValue: pageState.matchValuePassword,
               inputValueType: InputValueType.changePasword,

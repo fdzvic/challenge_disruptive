@@ -40,6 +40,7 @@ class CardLogin extends StatelessWidget {
             CustomTextFormField(
               label: "Email",
               controller: tecEmail,
+              hintText: "prueba@gmail.com",
               inputValueType: InputValueType.email,
               onChanged: (x) => pageState.firstValidation!
                   ? formkey.currentState!.validate()
@@ -47,6 +48,7 @@ class CardLogin extends StatelessWidget {
             ),
             CustomTextFormField(
               label: "Password",
+              hintText: "******************",
               controller: tecPassword,
               inputValueType: InputValueType.password,
               onChanged: (x) => pageState.firstValidation!

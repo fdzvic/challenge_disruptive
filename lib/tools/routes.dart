@@ -1,4 +1,4 @@
-import 'package:challenge_disruptive/features/dashboard/presentation/home/home_page.dart';
+import 'package:challenge_disruptive/features/dashboard/presentation/dashboard/dashboard_page.dart';
 import 'package:challenge_disruptive/features/init/presentation/splash_screen/splash_screen_page.dart';
 import 'package:challenge_disruptive/features/login/presentation/login/login_page.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ final router = GoRouter(initialLocation: Routes.rootRoute, routes: [
   GoRoute(
       path: Routes.home,
       pageBuilder: (context, state) =>
-          page(state: state, child: const HomePage())),
+          page(state: state, child: const DashboardPage())),
 ]);
 
 NoTransitionPage<void> page(
