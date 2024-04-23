@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:challenge_disruptive/features/login/presentation/login/login_controller.dart';
 import 'package:challenge_disruptive/features/login/presentation/login/login_state.dart';
 import 'package:challenge_disruptive/tools/custom_dialogs.dart';
@@ -30,45 +32,55 @@ class CardLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: context.width(),
-      child: Column(
-        children: [
-          CustomTextFormField(
-            label: "Email",
-            controller: tecEmail,
-            inputValueType: InputValueType.email,
-          ),
-          CustomTextFormField(
-            label: "Password",
-            controller: tecPassword,
-            inputValueType: InputValueType.password,
-          ),
-          const SizedBox(height: 10),
-          PrimaryButton(
-            text: "Iniciar sesión",
-            isLoading: pageState.isLoading,
-            onPressed: () async => await login(context),
-          ),
-        ],
+      child: Form(
+        key: formkey,
+        child: Column(
+          children: [
+            CustomTextFormField(
+              label: "Email",
+              controller: tecEmail,
+              inputValueType: InputValueType.email,
+            ),
+            CustomTextFormField(
+              label: "Password",
+              controller: tecPassword,
+              inputValueType: InputValueType.password,
+            ),
+            const SizedBox(height: 10),
+            PrimaryButton(
+              text: "Iniciar sesión",
+              isLoading: pageState.isLoading,
+              onPressed: () async => await login(context),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Future<void> login(BuildContext context) async {
-    try {
+    pageController.setFirtsValidation(true);
+    if (formkey.currentState!.validate()) {
       pageController.setIsLoading(true);
-      await pageController.loginRepository
-          .signInWithEmailAndPassword(tecEmail.text, tecPassword.text);
-      if (!context.mounted) return;
-      pageController.setIsLoading(false);
-      context.go(Routes.home);
-    } catch (e) {
-      pageController.setIsLoading(false);
 
-      dialogs.showMessageDialog(context,
-          data: ModalDinamicData(
-              title: 'Error al iniciar sesión',
-              subtitle: e.toString(),
-              labelButton: 'Ok'));
+      Future.delayed(const Duration(seconds: 2), () {
+        bool? goToHome = false;
+        for (var element in pageState.usersData!.users!) {
+          if (element.user == tecEmail.text &&
+              element.password == tecPassword.text) {
+            goToHome = true;
+            pageController.setIsLoading(false);
+            pageController.setFirtsValidation(false);
+            context.go(Routes.home);
+          }
+        }
+        pageController.setIsLoading(false);
+        !goToHome!
+            ? dialogs.showMessageDialog(context,
+                data: ModalDinamicData(
+                    title: "Error", subtitle: "Usuario no encontrado"))
+            : null;
+      });
     }
   }
 }

@@ -1,11 +1,13 @@
 import 'dart:async';
-
-import 'package:challenge_disruptive/features/login/data/login_repository.dart';
+import 'dart:convert';
+import 'package:challenge_disruptive/common/user_preferences.dart';
+import 'package:challenge_disruptive/features/login/domain/mock_users.dart';
 import 'package:challenge_disruptive/tools/custom_text.dart';
 import 'package:challenge_disruptive/tools/routes.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:is_first_run/is_first_run.dart';
 
 class SplashScreenPage extends ConsumerStatefulWidget {
   const SplashScreenPage({super.key});
@@ -16,10 +18,15 @@ class SplashScreenPage extends ConsumerStatefulWidget {
 class _SplashScreenState extends ConsumerState<SplashScreenPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _animatedController;
+  bool isFirstRun = false;
 
   @override
   void initState() {
     super.initState();
+
+    Future.delayed(Duration.zero, () async {
+      isFirstRun = await IsFirstRun.isFirstRun();
+    });
 
     _animatedController = AnimationController(
       vsync: this,
@@ -30,13 +37,8 @@ class _SplashScreenState extends ConsumerState<SplashScreenPage>
   @override
   void didChangeDependencies() {
     Timer(const Duration(seconds: 5), () {
-      ref.watch(loginRepositoryProvider).authStateChange.listen((user) {
-        if (user == null) {
-          context.go(Routes.login);
-        } else {
-          context.go(Routes.home);
-        }
-      });
+      isFirstRun ? prefs.usersRegistered = json.encode(mockUsers) : null;
+      prefs.loggedIn ? context.go(Routes.home) : context.go(Routes.login);
     });
 
     super.didChangeDependencies();

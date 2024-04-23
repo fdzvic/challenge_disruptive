@@ -26,13 +26,31 @@ class UserPreferences {
     _prefs.setString('jwt', value);
   }
 
-  // GET y SET de datos del usuario
-  String get userData {
-    return _prefs.getString('userData') ?? '';
+  // GET y SET de primera compilacion del app
+  bool get firstInitApp {
+    return _prefs.getBool('firstInitApp') ?? false;
   }
 
-  set userData(String value) {
-    _prefs.setString('userData', value);
+  set firstInitApp(bool value) {
+    _prefs.setBool('firstInitApp', value);
+  }
+
+  // GET y SET logueado
+  bool get loggedIn {
+    return _prefs.getBool('loggedIn') ?? false;
+  }
+
+  set loggedIn(bool value) {
+    _prefs.setBool('loggedIn', value);
+  }
+
+  // GET y SET lista de usuarios registrados
+  String get usersRegistered {
+    return _prefs.getString('usersRegistered') ?? '';
+  }
+
+  set usersRegistered(String value) {
+    _prefs.setString('usersRegistered', value);
   }
 }
 

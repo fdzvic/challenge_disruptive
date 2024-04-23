@@ -31,11 +31,13 @@ class ModalMessage extends StatelessWidget {
                 CustomText(
                   data.title,
                   fontSize: 20,
+                  textColor: Colors.black,
                   fontWeight: FontWeight.w600,
                 ),
                 const SizedBox(height: 10),
                 CustomText(
                   data.subtitle,
+                  textColor: Colors.black,
                   fontSize: 16,
                 ),
                 const SizedBox(height: 40),

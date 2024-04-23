@@ -23,6 +23,14 @@ class _LoginState extends ConsumerState<LoginPage> {
       GlobalKey<FormState>(debugLabel: '_loginFormKey');
 
   @override
+  void initState() {
+    Future.delayed(Duration.zero, () async {
+      await ref.watch(loginController.notifier).initData();
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var controller = ref.watch(loginController.notifier);
     var state = ref.watch(loginController);
@@ -85,7 +93,13 @@ class _LoginState extends ConsumerState<LoginPage> {
           tecPassword: tecPassword,
         );
       case 2:
-        return const CardRegister();
+        return CardRegister(
+          pageController: controller,
+          pageState: state,
+          formkey: formkey,
+          tecEmail: tecEmail,
+          tecPassword: tecPassword,
+        );
 
       default:
         return SizedBox(
