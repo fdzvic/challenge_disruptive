@@ -65,7 +65,7 @@ class CardLogin extends StatelessWidget {
 
       Future.delayed(const Duration(seconds: 2), () {
         bool? goToHome = false;
-        for (var element in pageState.usersData!.users!) {
+        for (var element in pageState.users!) {
           if (element.user == tecEmail.text &&
               element.password == tecPassword.text) {
             goToHome = true;
@@ -78,7 +78,9 @@ class CardLogin extends StatelessWidget {
         !goToHome!
             ? dialogs.showMessageDialog(context,
                 data: ModalDinamicData(
-                    title: "Error", subtitle: "Usuario no encontrado"))
+                    title: "Error",
+                    subtitle:
+                        "Las credenciales son incorrectas. Si no tienes una cuenta, regístrate."))
             : null;
       });
     }

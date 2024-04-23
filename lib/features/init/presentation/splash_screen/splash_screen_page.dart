@@ -18,7 +18,7 @@ class SplashScreenPage extends ConsumerStatefulWidget {
 class _SplashScreenState extends ConsumerState<SplashScreenPage>
     with SingleTickerProviderStateMixin {
   late AnimationController _animatedController;
-  bool isFirstRun = false;
+  late bool isFirstRun;
 
   @override
   void initState() {

@@ -39,14 +39,12 @@ String? validatePassword(String input, {String? matchValue, bool? errorBack}) {
   return null;
 }
 
-String? validateChangePassword(String input,
-    {String? matchValue, bool? errorBack}) {
+String? validateChangePassword(
+  String input, {
+  String? matchValue,
+}) {
   if (input.isEmpty) {
     return 'Este campo es obligatorio';
-  }
-
-  if (errorBack!) {
-    return '';
   }
 
   if (matchValue != null) {

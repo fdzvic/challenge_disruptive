@@ -4,26 +4,26 @@ class LoginState {
   final int? idScreen;
   final bool? isLoading;
   final bool? firstValidation;
-  final Users? usersData;
+  List<User>? users;
 
   LoginState({
     this.idScreen = 1,
     this.isLoading = false,
     this.firstValidation = false,
-    this.usersData,
+    this.users,
   });
 
   LoginState copyWith({
     int? idScreen,
     bool? isLoading,
     bool? firstValidation,
-    Users? usersData,
+    List<User>? users,
   }) {
     return LoginState(
       idScreen: idScreen ?? this.idScreen,
       isLoading: isLoading ?? this.isLoading,
       firstValidation: firstValidation ?? this.firstValidation,
-      usersData: usersData ?? this.usersData,
+      users: users ?? this.users,
     );
   }
 }

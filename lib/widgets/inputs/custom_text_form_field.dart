@@ -1,9 +1,11 @@
 import 'package:challenge_disruptive/tools/custom_colors.dart';
 import 'package:challenge_disruptive/tools/custom_text.dart';
+import 'package:challenge_disruptive/tools/extensions/dimens_extension.dart';
 import 'package:challenge_disruptive/tools/paths/paths_icons.dart';
 import 'package:challenge_disruptive/tools/validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomTextFormField extends StatefulWidget {
@@ -228,10 +230,13 @@ class CustomTextFormFieldState extends State<CustomTextFormField> {
                           const ColorFilter.mode(Colors.red, BlendMode.srcIn),
                     ),
                     const SizedBox(width: 8),
-                    CustomText(
-                      errorMessage ?? "Esto es un error",
-                      textColor: colors.errorColor,
-                      fontSize: 14,
+                    SizedBox(
+                      width: context.width(.8),
+                      child: CustomText(
+                        errorMessage ?? "Esto es un error",
+                        textColor: colors.errorColor,
+                        fontSize: 14,
+                      ),
                     ),
                   ],
                 ),
@@ -282,8 +287,8 @@ class CustomTextFormFieldState extends State<CustomTextFormField> {
             matchValue: widget.matchValue, errorBack: widget.errorBack);
         break;
       case InputValueType.changePasword:
-        errorMessage = validateChangePassword(text,
-            matchValue: widget.matchValue, errorBack: widget.errorBack);
+        errorMessage =
+            validateChangePassword(text, matchValue: widget.matchValue);
         break;
 
       case InputValueType.phone:
