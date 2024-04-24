@@ -39,27 +39,33 @@ class _DashboardState extends ConsumerState<DashboardPage> {
   void streamListenerBTC() {
     channelBTC.stream.listen((message) {
       Map<String, dynamic> getData = jsonDecode(message);
-      setState(() {
-        btcData.add(TradeData(DateTime.now(), double.parse(getData['p'])));
-      });
+      if (mounted) {
+        setState(() {
+          btcData.add(TradeData(DateTime.now(), double.parse(getData['p'])));
+        });
+      }
     });
   }
 
   void streamListenerETH() {
     channelETH.stream.listen((message) {
       Map<String, dynamic> getData = jsonDecode(message);
-      setState(() {
-        ethData.add(TradeData(DateTime.now(), double.parse(getData['p'])));
-      });
+      if (mounted) {
+        setState(() {
+          ethData.add(TradeData(DateTime.now(), double.parse(getData['p'])));
+        });
+      }
     });
   }
 
   void streamListenerADA() {
     channelADA.stream.listen((message) {
       Map<String, dynamic> getData = jsonDecode(message);
-      setState(() {
-        adaData.add(TradeData(DateTime.now(), double.parse(getData['p'])));
-      });
+      if (mounted) {
+        setState(() {
+          adaData.add(TradeData(DateTime.now(), double.parse(getData['p'])));
+        });
+      }
     });
   }
 

@@ -24,7 +24,8 @@ class DashboardController extends StateNotifier<DashboardState> {
 }
 
 final dashboardController =
-    StateNotifierProvider<DashboardController, DashboardState>((ref) {
+    StateNotifierProvider.autoDispose<DashboardController, DashboardState>(
+        (ref) {
   return DashboardController(
       loginRepository: ref.watch(loginRepositoryProvider));
 });
