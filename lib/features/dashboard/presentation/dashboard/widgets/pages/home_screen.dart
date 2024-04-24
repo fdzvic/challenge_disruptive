@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:challenge_disruptive/features/dashboard/presentation/dashboard/dashboard_controller.dart';
 import 'package:challenge_disruptive/features/dashboard/presentation/dashboard/dashboard_state.dart';
+import 'package:challenge_disruptive/features/dashboard/presentation/dashboard/widgets/buttons_crypto.dart';
 import 'package:challenge_disruptive/tools/custom_text.dart';
 import 'package:challenge_disruptive/tools/extensions/dimens_extension.dart';
 import 'package:challenge_disruptive/tools/extensions/string_converter.dart';
+import 'package:challenge_disruptive/tools/paths/paths_images.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -124,6 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
             price: widget.btcData.isNotEmpty
                 ? widget.btcData.last.price.toString().toCurrency()
                 : "0",
+            icon: images.bitcionLogo,
             onTap: () {
               titleCrypto = "BTC/USDT Precio:";
               dataSource = widget.btcData;
@@ -134,6 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
             price: widget.ethData.isNotEmpty
                 ? widget.ethData.last.price.toString().toCurrency()
                 : "0",
+            icon: images.ethereumLogo,
             onTap: () {
               titleCrypto = "ETH/USDT Precio:";
               dataSource = widget.ethData;
@@ -144,95 +148,13 @@ class _HomeScreenState extends State<HomeScreen> {
             price: widget.adaData.isNotEmpty
                 ? widget.adaData.last.price.toString().toCurrency()
                 : "0",
+            icon: images.cardanoLogo,
             onTap: () {
               titleCrypto = "ADA/USDT Precio:";
               dataSource = widget.adaData;
             },
           ),
-
-          // const CustomText(
-          //   "ETH/USDT Price",
-          //   fontWeight: FontWeight.bold,
-          //   fontSize: 15,
-          // ),
-          // Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: CustomText(
-          // widget.ethData.isNotEmpty
-          //     ? widget.ethData.last.price.toString().toCurrency()
-          //     : "0",
-          //     fontWeight: FontWeight.bold,
-          //     textColor: const Color.fromARGB(255, 250, 194, 25),
-          //     fontSize: 25,
-          //   ),
-          // ),
-          // SizedBox(
-          //   height: context.height(.4),
-          //   width: context.width(.9),
-          //   child: SfCartesianChart(
-          //     primaryXAxis: const DateTimeAxis(
-          //       majorGridLines: MajorGridLines(width: 0),
-          //       minorGridLines: MinorGridLines(width: 0),
-          //     ),
-          //     primaryYAxis: const NumericAxis(
-          //       majorGridLines: MajorGridLines(width: 0),
-          //       minorGridLines: MinorGridLines(width: 0),
-          //     ),
-          //     plotAreaBorderColor: Colors.transparent,
-          //     tooltipBehavior: TooltipBehavior(enable: true),
-          //     series: <LineSeries<TradeData, DateTime>>[
-          //       LineSeries<TradeData, DateTime>(
-          //         width: 1.5,
-          //         enableTooltip: true,
-          //         dataSource: widget.ethData,
-          //         xValueMapper: (TradeData data, _) => data.time,
-          //         yValueMapper: (TradeData data, _) => data.price,
-          //       ),
-          //     ],
-          //   ),
-          // ),
         ],
-      ),
-    );
-  }
-}
-
-class ButtonsCrypto extends StatelessWidget {
-  const ButtonsCrypto({
-    super.key,
-    required this.label,
-    this.icon,
-    required this.price,
-    this.onTap,
-  });
-
-  final String label;
-  final String? icon;
-  final String price;
-  final Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        margin: const EdgeInsets.only(bottom: 5),
-        width: context.width(),
-        color: Colors.white.withOpacity(.1),
-        child: Row(
-          children: [
-            Container(
-              color: Colors.green,
-              height: context.height(.05),
-              width: context.width(.1),
-            ),
-            const SizedBox(width: 15),
-            CustomText(label),
-            const Expanded(child: SizedBox(width: 10)),
-            CustomText(price)
-          ],
-        ),
       ),
     );
   }

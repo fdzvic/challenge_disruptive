@@ -4,9 +4,9 @@ import 'package:challenge_disruptive/features/dashboard/presentation/dashboard/d
 import 'package:challenge_disruptive/features/dashboard/presentation/dashboard/dashboard_state.dart';
 import 'package:challenge_disruptive/features/dashboard/presentation/dashboard/widgets/custom_bottom_navigator_bar.dart';
 import 'package:challenge_disruptive/features/dashboard/presentation/dashboard/widgets/pages/home_screen.dart';
+import 'package:challenge_disruptive/features/dashboard/presentation/dashboard/widgets/pages/profile_screen.dart';
+import 'package:challenge_disruptive/features/dashboard/presentation/dashboard/widgets/pages/search_screen.dart';
 import 'package:challenge_disruptive/features/login/presentation/login/widgets/background_login.dart';
-import 'package:challenge_disruptive/tools/custom_text.dart';
-import 'package:challenge_disruptive/tools/extensions/dimens_extension.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/io.dart';
@@ -104,40 +104,12 @@ class _DashboardState extends ConsumerState<DashboardPage> {
           adaData: adaData,
         );
       case 1:
-        return Container(
-            padding: context.horizontal(.05),
-            width: context.width(),
-            child: const Center(child: CustomText('Index 1: Search')));
+        return SearchScreen(context: context);
       case 2:
-        return Container(
-            padding: context.horizontal(.05),
-            height: context.height(.87),
-            width: context.width(),
-            child: const Center(child: CustomText('Index 2: Profile')));
+        return ProfileScreen(context: context);
 
       default:
         return Container();
     }
   }
 }
-
-
-
-
-// return Scaffold(
-//   body: SafeArea(
-//       child: Column(
-//     mainAxisAlignment: MainAxisAlignment.center,
-//     children: [
-//       Center(
-//         child: PrimaryButton(
-//           text: 'Salir',
-//           onPressed: () {
-//             prefs.loggedIn = false;
-//             context.go(Routes.login);
-//           },
-//         ),
-//       )
-//     ],
-//   )),
-// );
