@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             widget.state.titleCrypto,
             fontWeight: FontWeight.bold,
             textColor: Colors.white,
-            fontSize: 12,
+            fontSize: 20,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
